@@ -73,6 +73,13 @@ public class Album implements Comparable<Album>{
 		
 	}
 	
+	public Musica getMusica(int faixa) {
+		if(faixa - 1 < 0) {
+			return null;
+		}
+		
+		return musicas.get(faixa-1);
+	}
 	
 	public boolean adicionaMusica(Musica newMusic) { 
 		if(newMusic == null) {
@@ -151,7 +158,7 @@ public class Album implements Comparable<Album>{
 	}
 	
 	@Override
-	public String toString() {
+	public String toString() { // mostra artista, titulo, ano de lancamento e as musicas contidas no album
 		String album = "Artista: " + this.artista + FIM_DE_LINHA +
 					 "Titulo do album: " + this.titulo + FIM_DE_LINHA +
 					 "Ano de Lancamento: " + this.anoLancamento + FIM_DE_LINHA;
@@ -166,7 +173,7 @@ public class Album implements Comparable<Album>{
 		return album;
 	}
 
-	public int compareTo(Album outroAlbum) {
+	public int compareTo(Album outroAlbum) { // comparacao padrao com base no ano de lancamento
 		if (this.anoLancamento < outroAlbum.anoLancamento) {
 			return -1;
 		}

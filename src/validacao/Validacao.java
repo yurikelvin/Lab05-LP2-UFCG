@@ -82,6 +82,12 @@ public class Validacao {
 		
 	}
 	
+	public void validaObjeto(Object obj, String msg) throws ValidacaoException {
+		if(obj == null) {
+			throw new ValidacaoException(msg);
+		}
+	}
+	
 	public void validaTitulo(String titulo, String msg) throws ValidacaoException {
 		if(titulo == null || titulo.equals(" ") || titulo.equals("")) {
 			throw new ValidacaoException(msg);
@@ -107,7 +113,12 @@ public class Validacao {
 			}
 		}
 	}
-	
+
+	public void validaNumero(int x, String msg) throws ValidacaoException{
+		if(x < 0) {
+			throw new ValidacaoException(msg);
+		}
+	}
 	
 }
 
