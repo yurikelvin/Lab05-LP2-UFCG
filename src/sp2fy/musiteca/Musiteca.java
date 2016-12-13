@@ -1,20 +1,23 @@
 package sp2fy.musiteca;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.Set;
 
 import exception.ValidacaoException;
 import sp2fy.album.Album;
+import sp2fy.album.ArtistaComparator;
+import sp2fy.album.DuracaoTotalComparator;
+import sp2fy.album.NumeroDeFaixasComparator;
 import sp2fy.playlists.Playlist;
 import validacao.Validacao;
 
 public class Musiteca {
 	
-	private ArrayList<Album> meusAlbunsFavoritos;
-	private HashSet<Album> meusAlbuns;
+	private HashSet<Album> meusAlbunsFavoritos;
+	private ArrayList<Album> meusAlbuns;
 	
 	private HashMap<String, Playlist> minhasPlaylists;
 	
@@ -22,8 +25,8 @@ public class Musiteca {
 	
 	public Musiteca() {
 		
-		meusAlbunsFavoritos = new ArrayList<>();
-		meusAlbuns = new HashSet<>();
+		meusAlbunsFavoritos = new HashSet<>();
+		meusAlbuns = new ArrayList<>();
 		minhasPlaylists = new HashMap<>();
 		
 		minhaValidacao = new Validacao();
@@ -155,5 +158,34 @@ public class Musiteca {
 
 
 	}
+
+	public boolean removePlaylist(String nomePlaylist) throws ValidacaoException{
+		minhaValidacao.validaTitulo(nomePlaylist, "Nome de playlist invalido");
+		
+		if(minhasPlaylists.remove(nomePlaylist) != null) {
+			return false;
+		} return true;
+		
+	}
+	
+	public void ordenaAlbumWithYear() {
+		Collections.sort(meusAlbuns);
+	}
+	
+	public void ordenaAlbumWithArtist() {
+		ArtistaComparator comparator = new ArtistaComparator();
+		Collections.sort(meusAlbuns, comparator);
+	}
+	
+	public void ordenaAlbumWithDuration() {
+		DuracaoTotalComparator comparator = new DuracaoTotalComparator();
+		Collections.sort(meusAlbuns, comparator);
+	}
+	
+	public void ordenaAlbumWithTrackNumbers() {
+		NumeroDeFaixasComparator comparator = new NumeroDeFaixasComparator();
+		Collections.sort(meusAlbuns, comparator);
+	}
+
 
 }
