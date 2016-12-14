@@ -130,9 +130,6 @@ public class AlbumTest {
 		Musica aloPorteiro = new Musica("Alo porteiro", 5, "Sertanejo");
 		Musica comoFazComElaPop = new Musica("Como faz com ela", 3, "Pop");
 		Musica testeMusica = new Musica("Musica test", 5, "Reggae");
-		
-		// Test casos incorretos de adicao objeto null
-		assertFalse(mariliaMendDVD.adicionaMusica(null));
 
 		
 		// Test casos corretos
@@ -149,13 +146,39 @@ public class AlbumTest {
 		assertTrue(mariliaMendDVD.contemMusica("Alo porteiro"));
 		assertFalse(mariliaMendDVD.contemMusica("Musica test"));
 		
-		// Test casos incorretos de contem musica null/vazio
-		assertFalse(mariliaMendDVD.contemMusica(""));
-		assertFalse(mariliaMendDVD.contemMusica(null));
-		assertFalse(mariliaMendDVD.contemMusica("D"));
-		assertFalse(mariliaMendDVD.contemMusica(" "));
-		
 			
+	}
+	
+	@Test
+	public void testAdicionaMusicaWithException() throws Exception {
+		exception.expect(Exception.class);
+		exception.expectMessage("Musica nao pode ser nula");
+		// Test casos incorretos de adicao objeto null
+		mariliaMendDVD.adicionaMusica(null);
+	}
+	
+	@Test
+	public void testContemMusicaWithException() throws Exception {
+		exception.expect(Exception.class);
+		exception.expectMessage("Titulo da musica invalido");
+		// Test casos incorretos de adicao objeto null
+		mariliaMendDVD.contemMusica(null);
+	}
+	
+	@Test
+	public void testContemMusicaWithException1() throws Exception {
+		exception.expect(Exception.class);
+		exception.expectMessage("Titulo da musica invalido");
+		// Test casos incorretos de adicao objeto null
+		mariliaMendDVD.contemMusica(" ");
+	}
+	
+	@Test
+	public void testContemMusicaWithException2() throws Exception {
+		exception.expect(Exception.class);
+		exception.expectMessage("Titulo da musica invalido");
+		// Test casos incorretos de adicao objeto null
+		mariliaMendDVD.contemMusica("");
 	}
 
 	@Test
@@ -186,6 +209,17 @@ public class AlbumTest {
 		assertTrue(mariliaMendDVD.removeMusica(1));
 		assertFalse(mariliaMendDVD.contemMusica("Como faz com ela"));
 		
+		// Test
+		assertFalse(mariliaMendDVD.removeMusica(0));
+		
+	}
+	
+	
+	@Test
+	public void testRemoveMusicaWithException() throws Exception {
+		exception.expect(Exception.class);
+		exception.expectMessage("Faixa invalida");
+		mariliaMendDVD.removeMusica(-2);
 	}
 	
 	@Test

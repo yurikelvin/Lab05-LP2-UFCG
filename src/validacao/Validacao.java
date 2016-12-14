@@ -109,6 +109,13 @@ public class Validacao {
 			throw new ValidacaoException(msg);
 		}
 	}
+
+	public void validaNumeroFaixa(int faixa, String msg) throws ValidacaoException{
+		if(faixa <= 0) {
+			throw new ValidacaoException(msg);
+		}
+		
+	}
 	
 }
 

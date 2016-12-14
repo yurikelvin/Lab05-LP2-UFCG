@@ -60,11 +60,7 @@ public class Album implements Comparable<Album>{
 	
 	public Musica getMusica(String titulo) throws ValidacaoException{
 
-		try {
-			minhaValidacao.validaMusica(titulo);
-		}catch(ValidacaoException e) {
-			return null;
-		}
+		minhaValidacao.validaMusica(titulo);
 
 		
 		for(int i = 0; i < musicas.size(); i++) {
@@ -78,18 +74,16 @@ public class Album implements Comparable<Album>{
 		
 	}
 	
-	public Musica getMusica(int faixa) {
+	public Musica getMusica(int faixa) throws ValidacaoException{
 		if(faixa - 1 < 0) {
-			return null;
+			throw new ValidacaoException("Faixa invalida");
 		}
 		
 		return musicas.get(faixa-1);
 	}
 	
-	public boolean adicionaMusica(Musica newMusic) { 
-		if(newMusic == null) {
-			return false;
-		}
+	public boolean adicionaMusica(Musica newMusic) throws ValidacaoException{ 
+		minhaValidacao.validaObjeto(newMusic, "Musica nao pode ser nula");
 		
 		musicas.add(newMusic);
 		return true;
@@ -97,10 +91,8 @@ public class Album implements Comparable<Album>{
 		
 	}
 	
-	public boolean removeMusica(int faixa) {
-		if(faixa <= 0) {
-			return false;
-		}
+	public boolean removeMusica(int faixa) throws ValidacaoException {
+		minhaValidacao.validaNumeroFaixa(faixa, "Faixa invalida");
 		
 		if(numeroDeFaixas() - faixa < 0) {
 			return false;
@@ -111,12 +103,7 @@ public class Album implements Comparable<Album>{
 	}
 	
 	public boolean contemMusica(String titulo) throws ValidacaoException{
-		try{
-			minhaValidacao.validaMusica(titulo);
-		}catch(ValidacaoException e) {
-			return false;
-		}
-		
+		minhaValidacao.validaTitulo(titulo, "Titulo da musica invalido");
 		for(int i = 0; i < musicas.size(); i++) {
 			if (musicas.get(i).getTitulo().equals(titulo)) {
 				return true;
