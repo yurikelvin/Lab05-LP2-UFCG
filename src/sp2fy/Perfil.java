@@ -10,19 +10,23 @@ public class Perfil {
 	private Validacao minhaValidacao;
 	
 	public Perfil(String nomeUsuario) throws ValidacaoException{
-		minhaValidacao = new Validacao();
+		this.minhaValidacao = new Validacao();
 		minhaValidacao.validaTitulo(nomeUsuario, "Nome de usuario invalido");
 		
 		
 		this.nomeUsuario = nomeUsuario;
-		minhaMusiteca = new Musiteca();
+		this.minhaMusiteca = new Musiteca();
 	}
 	
+	public String getNomeUsuario() {
+		return this.nomeUsuario;
+	}
+
 	public boolean adicionaAlbum(Album album) {
 		return minhaMusiteca.adicionaAlbum(album);
 	}
 	
-	public boolean adicionaAlbumFavorito(Album album) {
+	public boolean adicionaAlbumFavorito(Album album) throws Exception{
 		return minhaMusiteca.adicionaAlbumFavorito(album);
 	}
 	
@@ -46,7 +50,7 @@ public class Perfil {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((nomeUsuario == null) ? 0 : nomeUsuario.hashCode());
+		result = prime * result + ((this.getNomeUsuario() == null) ? 0 : this.getNomeUsuario().hashCode());
 		return result;
 	}
 
@@ -59,17 +63,17 @@ public class Perfil {
 		if (getClass() != obj.getClass())
 			return false;
 		Perfil other = (Perfil) obj;
-		if (nomeUsuario == null) {
-			if (other.nomeUsuario != null)
+		if (this.getNomeUsuario() == null) {
+			if (other.getNomeUsuario() != null)
 				return false;
-		} else if (!nomeUsuario.equals(other.nomeUsuario))
+		} else if (!this.getNomeUsuario().equals(other.getNomeUsuario()))
 			return false;
 		return true;
 	}
 	
 	@Override
 	public String toString() {
-		return "Usuario: " + this.nomeUsuario + System.lineSeparator() + minhaMusiteca + "Fim do perfil de " + this.nomeUsuario;
+		return "Usuario: " + this.getNomeUsuario() + System.lineSeparator() + minhaMusiteca + "Fim do perfil de " + this.getNomeUsuario();
 	}
 
 }

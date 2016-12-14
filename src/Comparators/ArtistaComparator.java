@@ -1,6 +1,8 @@
-package sp2fy;
+package Comparators;
 
 import java.util.Comparator;
+
+import sp2fy.Album;
 
 public class ArtistaComparator implements Comparator<Album>{
 

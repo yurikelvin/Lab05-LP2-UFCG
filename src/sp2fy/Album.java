@@ -19,14 +19,15 @@ public class Album implements Comparable<Album>{
 	
 	public Album(String artista, String titulo, int anoLancamento) throws ValidacaoException{
 		
-		minhaValidacao = new Validacao();
+		this.minhaValidacao = new Validacao();
 		
 		minhaValidacao.validaAlbum(artista, titulo, anoLancamento);
 		
 		this.artista = artista;
 		this.titulo = titulo;
 		this.anoLancamento = anoLancamento;
-		musicas = new ArrayList<>();
+		this.musicas = new ArrayList<>();
+		
 	}
 	
 
@@ -41,6 +42,11 @@ public class Album implements Comparable<Album>{
 		return this.titulo;
 	}
 	
+	public int getAnoLancamento() {
+		return anoLancamento;
+	}
+
+
 	public int getDuracaoTotal(){ // retorna a duracao total do album com base nas faixas
 		int duracao = 0;
 		for(int i = 0; i < musicas.size(); i++) {
@@ -128,8 +134,8 @@ public class Album implements Comparable<Album>{
 	public int hashCode() { // baseado em artista e titulo
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((artista == null) ? 0 : artista.hashCode());
-		result = prime * result + ((titulo == null) ? 0 : titulo.hashCode());
+		result = prime * result + ((this.getArtista() == null) ? 0 : this.getArtista().hashCode());
+		result = prime * result + ((this.getTitulo() == null) ? 0 : this.getTitulo().hashCode());
 		return result;
 	}
 
@@ -143,40 +149,40 @@ public class Album implements Comparable<Album>{
 		if (getClass() != obj.getClass())
 			return false;
 		Album other = (Album) obj;
-		if (artista == null) {
-			if (other.artista != null)
+		if (this.getArtista() == null) {
+			if (other.getArtista() != null)
 				return false;
-		} else if (!artista.equals(other.artista))
+		} else if (!getArtista().equals(other.getArtista()))
 			return false;
-		if (titulo == null) {
-			if (other.titulo != null)
+		if (this.getTitulo() == null) {
+			if (other.getTitulo() != null)
 				return false;
-		} else if (!titulo.equals(other.titulo))
+		} else if (!this.getTitulo().equals(other.getTitulo()))
 			return false;
 		return true;
 	}
 	
 	@Override
 	public String toString() { // mostra artista, titulo, ano de lancamento e as musicas contidas no album
-		String album = "Artista: " + this.artista + FIM_DE_LINHA +
-					 "Titulo do album: " + this.titulo + FIM_DE_LINHA +
-					 "Ano de Lancamento: " + this.anoLancamento + FIM_DE_LINHA;
+		String album = "Artista: " + this.getArtista() + FIM_DE_LINHA +
+					 "Titulo do album: " + this.getTitulo() + FIM_DE_LINHA +
+					 "Ano de Lancamento: " + this.getAnoLancamento() + FIM_DE_LINHA;
 		if (musicas.size() >= 1){
 			album += FIM_DE_LINHA;
 			for (int i = 0; i < musicas.size(); i++) {
 				album += String.format("Faixa %d) %s" + FIM_DE_LINHA, i+1, musicas.get(i).toString());
 			}
 		} else {
-			album += FIM_DE_LINHA + "Album " + this.titulo + " sem musicas adicionadas";
+			album += FIM_DE_LINHA + "Album " + this.getTitulo() + " sem musicas adicionadas";
 		}
 		return album;
 	}
 
 	public int compareTo(Album outroAlbum) { // comparacao padrao com base no ano de lancamento
-		if (this.anoLancamento < outroAlbum.anoLancamento) {
+		if (this.getAnoLancamento() < outroAlbum.getAnoLancamento()) {
 			return -1;
 		}
-		if (this.anoLancamento > outroAlbum.anoLancamento) {
+		if (this.getAnoLancamento() > outroAlbum.getAnoLancamento()) {
 			return 1;
 		}
 		return 0;

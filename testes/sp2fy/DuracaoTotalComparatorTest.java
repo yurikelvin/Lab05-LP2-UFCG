@@ -5,8 +5,8 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
 
+import Comparators.DuracaoTotalComparator;
 import sp2fy.Album;
-import sp2fy.DuracaoTotalComparator;
 import sp2fy.Musica;
 
 public class DuracaoTotalComparatorTest {

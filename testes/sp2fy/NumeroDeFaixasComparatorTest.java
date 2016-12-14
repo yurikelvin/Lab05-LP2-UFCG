@@ -5,9 +5,9 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
 
+import Comparators.NumeroDeFaixasComparator;
 import sp2fy.Album;
 import sp2fy.Musica;
-import sp2fy.NumeroDeFaixasComparator;
 
 public class NumeroDeFaixasComparatorTest {
 

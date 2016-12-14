@@ -15,8 +15,8 @@ public class Playlist {
 	
 	public Playlist(String nomePlaylist) throws ValidacaoException{
 		
-		minhaValidacao = new Validacao();
-		musicasPlaylist = new ArrayList<>();
+		this.minhaValidacao = new Validacao();
+		this.musicasPlaylist = new ArrayList<>();
 		
 		minhaValidacao.validaTitulo(nomePlaylist, "Nome de playlist invalida");
 		
@@ -97,7 +97,7 @@ public class Playlist {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((nomePlaylist == null) ? 0 : nomePlaylist.hashCode());
+		result = prime * result + ((this.getNomePlaylist() == null) ? 0 : this.getNomePlaylist().hashCode());
 		return result;
 	}
 	
@@ -110,17 +110,17 @@ public class Playlist {
 		if (getClass() != obj.getClass())
 			return false;
 		Playlist other = (Playlist) obj;
-		if (nomePlaylist == null) {
-			if (other.nomePlaylist != null)
+		if (this.getNomePlaylist() == null) {
+			if (other.getNomePlaylist() != null)
 				return false;
-		} else if (!nomePlaylist.equals(other.nomePlaylist))
+		} else if (!this.getNomePlaylist().equals(other.getNomePlaylist()))
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		String playlist = "Playlist: " + "\"" + this.nomePlaylist + "\"" + FIM_DE_LINHA;
+		String playlist = "Playlist: " + "\"" + this.getNomePlaylist() + "\"" + FIM_DE_LINHA;
 		if (musicasPlaylist.size() >= 1){
 			playlist += FIM_DE_LINHA;
 			for (int i = 0; i < musicasPlaylist.size(); i++) {

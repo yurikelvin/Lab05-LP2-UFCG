@@ -12,7 +12,7 @@ public class Musica {
 	
 	public Musica(String titulo, int duracao, String genero) throws ValidacaoException {
 		
-		minhaValidacao = new Validacao();
+		this.minhaValidacao = new Validacao();
 		
 		minhaValidacao.validaMusica(titulo, duracao, genero);
 		
@@ -40,8 +40,8 @@ public class Musica {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + duracao;
-		result = prime * result + ((titulo == null) ? 0 : titulo.hashCode());
+		result = prime * result + this.getDuracao();
+		result = prime * result + ((this.getTitulo() == null) ? 0 : this.getTitulo().hashCode());
 		return result;
 	}
 
@@ -54,19 +54,19 @@ public class Musica {
 		if (getClass() != obj.getClass())
 			return false;
 		Musica other = (Musica) obj;
-		if (duracao != other.duracao)
+		if (this.getDuracao() != other.getDuracao())
 			return false;
-		if (titulo == null) {
-			if (other.titulo != null)
+		if (this.getTitulo() == null) {
+			if (other.getTitulo() != null)
 				return false;
-		} else if (!titulo.equals(other.titulo))
+		} else if (!this.getTitulo().equals(other.getTitulo()))
 			return false;
 		return true;
 	}
 	
 	@Override
 	public String toString() {
-		return "Titulo: " + this.titulo + ", Duracao: " + this.duracao +" minutos" + ", Genero: " + this.genero;
+		return "Titulo: " + this.getTitulo() + ", Duracao: " + this.getDuracao() +" minutos" + ", Genero: " + this.getGenero();
 	}
 	
 	

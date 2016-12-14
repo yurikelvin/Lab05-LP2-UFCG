@@ -7,6 +7,9 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
+import Comparators.ArtistaComparator;
+import Comparators.DuracaoTotalComparator;
+import Comparators.NumeroDeFaixasComparator;
 import exception.ValidacaoException;
 import validacao.Validacao;
 
@@ -16,16 +19,15 @@ public class Musiteca {
 	private ArrayList<Album> meusAlbuns;
 	
 	private HashMap<String, Playlist> minhasPlaylists;
-	private String FIM_DE_LINHA;
+	private final String FIM_DE_LINHA = System.lineSeparator();
 	private Validacao minhaValidacao;
 	
 	public Musiteca() {
 		
-		meusAlbunsFavoritos = new HashSet<>();
-		meusAlbuns = new ArrayList<>();
-		minhasPlaylists = new HashMap<>();
-		FIM_DE_LINHA = System.lineSeparator();
-		minhaValidacao = new Validacao();
+		this.meusAlbunsFavoritos = new HashSet<>();
+		this.meusAlbuns = new ArrayList<>();
+		this.minhasPlaylists = new HashMap<>();
+		this.minhaValidacao = new Validacao();
 	}
 	
 	public boolean adicionaAlbum(Album novoAlbum) {
@@ -39,11 +41,15 @@ public class Musiteca {
 		return true;
 	}
 	
-	public boolean adicionaAlbumFavorito(Album novoAlbum) {
+	public boolean adicionaAlbumFavorito(Album novoAlbum) throws ValidacaoException{
 		try {
 			minhaValidacao.validaObjeto(novoAlbum, "Album nao pode ser nulo");
 		} catch(Exception e) {
 			return false;
+		}
+		if( !(pesquisaAlbum(novoAlbum.getTitulo())) ) {
+			return false;
+			
 		}
 		meusAlbunsFavoritos.add(novoAlbum);
 		return true;

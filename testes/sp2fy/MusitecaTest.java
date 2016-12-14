@@ -42,8 +42,11 @@ public class MusitecaTest {
 	public void testAdicionaAlbumFavorito() throws Exception{
 		
 		Album brunoTest = new Album("Bruno Mars", "I know you", 1967);
-		assertTrue(minhaMusitecaTest.adicionaAlbumFavorito(brunoTest));
+		assertFalse(minhaMusitecaTest.adicionaAlbumFavorito(brunoTest));
 		assertFalse(minhaMusitecaTest.adicionaAlbumFavorito(null));
+		
+		minhaMusitecaTest.adicionaAlbum(brunoTest);
+		assertTrue(minhaMusitecaTest.adicionaAlbumFavorito(brunoTest));
 		
 		
 	}
@@ -70,11 +73,13 @@ public class MusitecaTest {
 	@Test
 	public void testRemoveAlbumFavorito() throws Exception {
 		Album brunoTest = new Album("Bruno Mars", "I know you", 1967);
+		minhaMusitecaTest.adicionaAlbum(brunoTest);
 		assertTrue(minhaMusitecaTest.adicionaAlbumFavorito(brunoTest));
 		assertTrue(minhaMusitecaTest.pesquisaAlbumFavorito("I know you"));
 		assertTrue(minhaMusitecaTest.removeAlbumFavorito("I know you"));
 		assertTrue(minhaMusitecaTest.adicionaAlbumFavorito(brunoTest));
 		Album brunoMarrone = new Album("Bruno e Marrone", "Seu guarda", 2004);
+		minhaMusitecaTest.adicionaAlbum(brunoMarrone);
 		assertTrue(minhaMusitecaTest.adicionaAlbumFavorito(brunoMarrone));
 		assertTrue(minhaMusitecaTest.removeAlbumFavorito("Seu guarda"));
 		
@@ -144,6 +149,7 @@ public class MusitecaTest {
 	@Test
 	public void testPesquisaAlbumFavorito() throws Exception {
 		Album brunoTest = new Album("Bruno Mars", "I know you", 1967);
+		minhaMusitecaTest.adicionaAlbum(brunoTest);
 		minhaMusitecaTest.adicionaAlbumFavorito(brunoTest);
 		assertTrue(minhaMusitecaTest.pesquisaAlbumFavorito("I know you"));
 	}
