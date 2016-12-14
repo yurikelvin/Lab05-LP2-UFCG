@@ -188,8 +188,6 @@ public class AlbumTest {
 		Musica aloPorteiro = new Musica("Alo porteiro", 5, "Sertanejo");
 		
 		// Test removendo faixas null/negativos/inexistentes
-		assertFalse(mariliaMendDVD.removeMusica(0));
-		assertFalse(mariliaMendDVD.removeMusica(-2));
 		assertFalse(mariliaMendDVD.removeMusica(3));
 		
 		//
@@ -222,6 +220,14 @@ public class AlbumTest {
 		mariliaMendDVD.removeMusica(-2);
 	}
 	
+	@Test
+	public void testRemoveMusicaWithException1() throws Exception {
+		exception.expect(Exception.class);
+		exception.expectMessage("Faixa invalida");
+		mariliaMendDVD.removeMusica(0);
+	}
+	
+
 	@Test
 	public void testGetMusica() throws Exception {
 		Musica oQueFalta = new Musica("O que falta em voce sou eu", 4, "Sertanejo");
