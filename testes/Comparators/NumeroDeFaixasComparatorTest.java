@@ -1,4 +1,4 @@
-package sp2fy;
+package Comparators;
 
 import static org.junit.Assert.assertEquals;
 
