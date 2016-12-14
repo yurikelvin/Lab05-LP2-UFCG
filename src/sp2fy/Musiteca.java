@@ -30,23 +30,17 @@ public class Musiteca {
 		this.minhaValidacao = new Validacao();
 	}
 	
-	public boolean adicionaAlbum(Album novoAlbum) {
-		try {
-			minhaValidacao.validaObjeto(novoAlbum, "Album nao pode ser nulo");
-		} catch(Exception e) {
-			return false;
-		}
+	public boolean adicionaAlbum(Album novoAlbum) throws ValidacaoException{
+		minhaValidacao.validaObjeto(novoAlbum, "Album nao pode ser nulo");
+
 		meusAlbuns.add(novoAlbum);
 		Collections.sort(meusAlbuns); // ordena album com base nos anos de lancamento
 		return true;
 	}
 	
 	public boolean adicionaAlbumFavorito(Album novoAlbum) throws ValidacaoException{
-		try {
-			minhaValidacao.validaObjeto(novoAlbum, "Album nao pode ser nulo");
-		} catch(Exception e) {
-			return false;
-		}
+		minhaValidacao.validaObjeto(novoAlbum, "Album nao pode ser nulo");
+
 		if( !(pesquisaAlbum(novoAlbum.getTitulo())) ) {
 			return false;
 			

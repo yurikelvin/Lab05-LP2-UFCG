@@ -22,7 +22,7 @@ public class Perfil {
 		return this.nomeUsuario;
 	}
 
-	public boolean adicionaAlbum(Album album) {
+	public boolean adicionaAlbum(Album album) throws Exception {
 		return minhaMusiteca.adicionaAlbum(album);
 	}
 	
@@ -44,6 +44,14 @@ public class Perfil {
 	
 	public boolean removePlaylist(String titulo) throws Exception {
 		return minhaMusiteca.removePlaylist(titulo);
+	}
+	
+	public boolean pesquisaAlbum(String nome) throws Exception {
+		return minhaMusiteca.pesquisaAlbum(nome);
+	}
+	
+	public boolean pesquisaAlbumFavorito(String nome) throws Exception {
+		return minhaMusiteca.pesquisaAlbumFavorito(nome);
 	}
 
 	@Override

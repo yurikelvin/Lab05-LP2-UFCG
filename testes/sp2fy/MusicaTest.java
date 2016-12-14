@@ -115,7 +115,7 @@ public class MusicaTest {
 	@Test
 	public void testHashCode() throws Exception {
 		Musica musica1 = new Musica("Bethoven", 50, "Opera");
-		assertEquals(musica1.hashCode(), music.hashCode());
+		assertEquals(musica1.hashCode() , music.hashCode());
 		Musica musica2 = new Musica("Bethoven", 50, "Galego");
 		assertEquals(music.hashCode(), musica2.hashCode());
 		Musica musica3 = new Musica("Teste", 50, "Opera");

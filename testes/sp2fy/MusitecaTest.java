@@ -33,9 +33,16 @@ public class MusitecaTest {
 		
 		Album brunoTest = new Album("Bruno Mars", "I know you", 1967);
 		assertTrue(minhaMusitecaTest.adicionaAlbum(brunoTest));
-		assertFalse(minhaMusitecaTest.adicionaAlbum(null));
+
 		
 		
+	}
+	
+	@Test
+	public void testAdicionaAlbumWithException() throws Exception {
+		exception.expect(Exception.class);
+		exception.expectMessage("Album nao pode ser nulo");
+		minhaMusitecaTest.adicionaAlbum(null);
 	}
 	
 	@Test
@@ -43,12 +50,18 @@ public class MusitecaTest {
 		
 		Album brunoTest = new Album("Bruno Mars", "I know you", 1967);
 		assertFalse(minhaMusitecaTest.adicionaAlbumFavorito(brunoTest));
-		assertFalse(minhaMusitecaTest.adicionaAlbumFavorito(null));
 		
 		minhaMusitecaTest.adicionaAlbum(brunoTest);
 		assertTrue(minhaMusitecaTest.adicionaAlbumFavorito(brunoTest));
 		
 		
+	}
+	
+	@Test
+	public void testAdicionaAlbumFavoritoWithException() throws Exception {
+		exception.expect(Exception.class);
+		exception.expectMessage("Album nao pode ser nulo");
+		minhaMusitecaTest.adicionaAlbumFavorito(null);
 	}
 	
 	@Test
