@@ -1,8 +1,8 @@
 package validacao;
 
 import exception.ValidacaoException;
-import sp2fy.album.Album;
-import sp2fy.musica.Musica;
+import sp2fy.Album;
+import sp2fy.Musica;
 
 public class Validacao {
 
@@ -42,21 +42,11 @@ public class Validacao {
 	}
 	
 	public void validaAlbum(String artista, String titulo, int anoLancamento) throws ValidacaoException{
-		if(artista == null || artista.length() < 2) {
-			throw new ValidacaoException("Artista do album nao pode ser nulo, informe um artista com no minimo 2 letras");
-		} else if(!Character.isAlphabetic(artista.charAt(0))) {
-			throw new ValidacaoException("Artista do album nao deve conter numeros ou caracteres especiais");
-		}else {
-			for(int i = 1; i < artista.length(); i++) {
-				if(!(Character.isAlphabetic(artista.charAt(i)))){
-					if(artista.charAt(i) != ' ') {
-						throw new ValidacaoException("Artista do album nao deve conter numeros ou caracteres especiais");
-					}
-				}
-			}
-		}
-		if(titulo == null || titulo.length() < 2) {
-			throw new ValidacaoException("Titulo do album nao deve ser nulo ou vazio, informe um titulo com no minimo 2 letras");
+		if(artista == null || artista.equals(" ") || artista.equals("")) {
+			throw new ValidacaoException("Artista do album nao pode ser nulo");
+		} 
+		if(titulo == null || titulo.equals(" ") || titulo.equals("")) {
+			throw new ValidacaoException("Titulo do album nao deve ser nulo ou vazio");
 			
 		}
 		if(anoLancamento < 1800 || anoLancamento > 2016) {

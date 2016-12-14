@@ -1,4 +1,4 @@
-package sp2fy.album;
+package sp2fy;
 
 import java.util.Comparator;
 

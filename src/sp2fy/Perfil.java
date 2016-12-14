@@ -1,8 +1,6 @@
-package sp2fy.perfis;
+package sp2fy;
 
 import exception.ValidacaoException;
-import sp2fy.album.Album;
-import sp2fy.musiteca.Musiteca;
 import validacao.Validacao;
 
 public class Perfil {
@@ -67,6 +65,11 @@ public class Perfil {
 		} else if (!nomeUsuario.equals(other.nomeUsuario))
 			return false;
 		return true;
+	}
+	
+	@Override
+	public String toString() {
+		return "Usuario: " + this.nomeUsuario + System.lineSeparator() + minhaMusiteca + "Fim do perfil de " + this.nomeUsuario;
 	}
 
 }

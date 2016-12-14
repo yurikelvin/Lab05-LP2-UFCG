@@ -1,4 +1,4 @@
-package sp2fy.musica;
+package sp2fy;
 
 import exception.ValidacaoException;
 import validacao.Validacao;

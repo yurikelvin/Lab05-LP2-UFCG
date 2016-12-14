@@ -1,9 +1,8 @@
-package sp2fy.album;
+package sp2fy;
 
 import java.util.ArrayList;
 
 import exception.ValidacaoException;
-import sp2fy.musica.Musica;
 import validacao.Validacao;
 
 public class Album implements Comparable<Album>{
@@ -168,7 +167,7 @@ public class Album implements Comparable<Album>{
 				album += String.format("Faixa %d) %s" + FIM_DE_LINHA, i+1, musicas.get(i).toString());
 			}
 		} else {
-			album += FIM_DE_LINHA + "Album sem musicas adicionadas";
+			album += FIM_DE_LINHA + "Album " + this.titulo + " sem musicas adicionadas";
 		}
 		return album;
 	}

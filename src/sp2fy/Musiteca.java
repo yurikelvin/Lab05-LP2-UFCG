@@ -1,17 +1,13 @@
-package sp2fy.musiteca;
+package sp2fy;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Set;
 
 import exception.ValidacaoException;
-import sp2fy.album.Album;
-import sp2fy.album.ArtistaComparator;
-import sp2fy.album.DuracaoTotalComparator;
-import sp2fy.album.NumeroDeFaixasComparator;
-import sp2fy.playlists.Playlist;
 import validacao.Validacao;
 
 public class Musiteca {
@@ -20,7 +16,7 @@ public class Musiteca {
 	private ArrayList<Album> meusAlbuns;
 	
 	private HashMap<String, Playlist> minhasPlaylists;
-	
+	private String FIM_DE_LINHA;
 	private Validacao minhaValidacao;
 	
 	public Musiteca() {
@@ -28,7 +24,7 @@ public class Musiteca {
 		meusAlbunsFavoritos = new HashSet<>();
 		meusAlbuns = new ArrayList<>();
 		minhasPlaylists = new HashMap<>();
-		
+		FIM_DE_LINHA = System.lineSeparator();
 		minhaValidacao = new Validacao();
 	}
 	
@@ -39,6 +35,7 @@ public class Musiteca {
 			return false;
 		}
 		meusAlbuns.add(novoAlbum);
+		Collections.sort(meusAlbuns); // ordena album com base nos anos de lancamento
 		return true;
 	}
 	
@@ -162,16 +159,12 @@ public class Musiteca {
 	public boolean removePlaylist(String nomePlaylist) throws ValidacaoException{
 		minhaValidacao.validaTitulo(nomePlaylist, "Nome de playlist invalido");
 		
-		if(minhasPlaylists.remove(nomePlaylist) != null) {
+		if(minhasPlaylists.remove(nomePlaylist) == null) {
 			return false;
 		} return true;
 		
 	}
-	
-	public void ordenaAlbumWithYear() {
-		Collections.sort(meusAlbuns);
-	}
-	
+
 	public void ordenaAlbumWithArtist() {
 		ArtistaComparator comparator = new ArtistaComparator();
 		Collections.sort(meusAlbuns, comparator);
@@ -186,6 +179,56 @@ public class Musiteca {
 		NumeroDeFaixasComparator comparator = new NumeroDeFaixasComparator();
 		Collections.sort(meusAlbuns, comparator);
 	}
+	
+	@Override
+	public String toString() {
+		String musiteca = "--- Albuns ---" + FIM_DE_LINHA;
+		
+		if(meusAlbuns.size() == 0) {
+			musiteca += FIM_DE_LINHA + "Sem albuns adicionados" + FIM_DE_LINHA;
+			
+		} else {
+			for(int i = 0; i < meusAlbuns.size(); i ++) {
+				musiteca += String.format(FIM_DE_LINHA + "%s", meusAlbuns.get(i));
+			}
+			
+			musiteca += FIM_DE_LINHA;
+			
+			
+		}
+		musiteca += "-------------------" + FIM_DE_LINHA;
+		
+		musiteca += FIM_DE_LINHA + "--- Albuns Favoritos ---" + FIM_DE_LINHA;
+		if(meusAlbunsFavoritos.size() == 0) {
+			musiteca += FIM_DE_LINHA + "Sem albuns favoritos" + FIM_DE_LINHA;
+		} else {
+			Iterator<Album> it = meusAlbunsFavoritos.iterator();
+			while(it.hasNext()) {
+				Album album = it.next();
+				musiteca += String.format(FIM_DE_LINHA + "%s", album);
+			}
+			
+			musiteca += FIM_DE_LINHA;
+			
+		}
+		musiteca += "-------------------" + FIM_DE_LINHA;
+		
+		musiteca += FIM_DE_LINHA + "--- Playlists ---" + FIM_DE_LINHA;
+		if(minhasPlaylists.size() == 0) {
+			musiteca += FIM_DE_LINHA + "Sem playlists adicionadas" + FIM_DE_LINHA;
+			
+		} else {
+			Set<String> chaves = minhasPlaylists.keySet();
+			for(String keys : chaves) {
+				musiteca += String.format(FIM_DE_LINHA + "%s", minhasPlaylists.get(keys));
+			}
+			
+			musiteca += FIM_DE_LINHA;
+		}
+		musiteca += "-------------------" + FIM_DE_LINHA;
+		
+		return musiteca;
+	}
 
-
+	
 }

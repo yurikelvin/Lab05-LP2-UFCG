@@ -1,6 +1,8 @@
-package sp2fy.musiteca;
+package sp2fy;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
@@ -8,8 +10,9 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
-import sp2fy.album.Album;
-import sp2fy.musica.Musica;
+import sp2fy.Album;
+import sp2fy.Musica;
+import sp2fy.Musiteca;
 
 public class MusitecaTest {
 	
@@ -130,7 +133,6 @@ public class MusitecaTest {
 		minhaMusitecaTest.removeAlbumFavorito(" ");
 	}
 
-
 	@Test
 	public void testPesquisaAlbum() throws Exception {
 		Album brunoTest = new Album("Bruno Mars", "I know you", 1967);
@@ -192,4 +194,23 @@ public class MusitecaTest {
 		
 	}
 	
+	@Test
+	public void testRemovePlaylist() throws Exception {
+		Album albumTest = new Album("Bruno Mars", "I know you", 1988);
+		albumTest.adicionaMusica(new Musica("Musica dahora", 5, "Qualquer um"));
+		albumTest.adicionaMusica(new Musica("Musica teste", 10 ,"Esse aeh"));
+		minhaMusitecaTest.adicionaAlbum(albumTest);
+		minhaMusitecaTest.adicionaPlaylist("pra curtir", "I know you", 1);
+		minhaMusitecaTest.adicionaPlaylist("pra curtir", "I know you", 2);
+		assertTrue(minhaMusitecaTest.removePlaylist("pra curtir"));
+	}	
+	
+	@Test
+	public void testNotRemovedPlaylist() throws Exception {
+
+		assertFalse(minhaMusitecaTest.removePlaylist("dormir"));
+		
+	}
+
+
 }

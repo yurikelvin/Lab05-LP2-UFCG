@@ -1,4 +1,4 @@
-package sp2fy.playlists;
+package sp2fy;
 
 import static org.junit.Assert.fail;
 
@@ -13,7 +13,8 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
-import sp2fy.musica.Musica;
+import sp2fy.Musica;
+import sp2fy.Playlist;
 
 public class PlaylistTest {
 
@@ -178,12 +179,9 @@ public class PlaylistTest {
 	public void testToString() throws Exception{
 		final String FIM_DE_LINHA = System.lineSeparator();
 		
-		String semMusicas = "Playlist: Pra relaxar" + FIM_DE_LINHA + FIM_DE_LINHA + "Playlist sem musicas adicionadas";
-		assertEquals(semMusicas, minhaPlaylist.toString());
-		
 		Musica cheiaDeManias = new Musica("Cheia de manias", 4, "Pagode");
 		minhaPlaylist.adicionaMusica(cheiaDeManias);
-		String comMusicas = "Playlist: Pra relaxar" + FIM_DE_LINHA + FIM_DE_LINHA + 
+		String comMusicas = "Playlist: \"Pra relaxar\"" + FIM_DE_LINHA + FIM_DE_LINHA + 
 							"1) Titulo: Cheia de manias, Duracao: 4 minutos, Genero: Pagode" + FIM_DE_LINHA;
 		
 		assertEquals(comMusicas, minhaPlaylist.toString());

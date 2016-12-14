@@ -1,4 +1,4 @@
-package sp2fy.album;
+package sp2fy;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -11,7 +11,8 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
-import sp2fy.musica.Musica;
+import sp2fy.Album;
+import sp2fy.Musica;
 
 public class AlbumTest {
 	
@@ -34,7 +35,7 @@ public class AlbumTest {
 			Album testeAlbum = new Album(null, "Teste - DVD", 2016);
 			Assert.fail("Lancamento de Exception com nome de artista vazio");
 		}catch(Exception e) {
-			assertEquals("Artista do album nao pode ser nulo, informe um artista com no minimo 2 letras", e.getMessage());
+			assertEquals("Artista do album nao pode ser nulo", e.getMessage());
 			
 		} //
 		
@@ -43,7 +44,7 @@ public class AlbumTest {
 			Assert.fail("Lancamento de Exception com nome de artista vazio");
 		}catch(Exception e) {
 			
-			assertEquals("Artista do album nao pode ser nulo, informe um artista com no minimo 2 letras", e.getMessage());
+			assertEquals("Artista do album nao pode ser nulo", e.getMessage());
 			
 		} //
 		
@@ -51,23 +52,9 @@ public class AlbumTest {
 			Album testeAlbum = new Album("", "Teste - DVD", 2015);
 			Assert.fail("Lancamento de Exception com nome de artista vazio");
 		}catch(Exception e) {
-			assertEquals("Artista do album nao pode ser nulo, informe um artista com no minimo 2 letras", e.getMessage());
+			assertEquals("Artista do album nao pode ser nulo", e.getMessage());
 		} //
-		
-		try {
-			Album testeAlbum = new Album("1234", "Teste - DVD", 2015);
-			Assert.fail("Lancamento de Exception com caracteres invalidos");
-		}catch(Exception e) {
-			assertEquals("Artista do album nao deve conter numeros ou caracteres especiais", e.getMessage());
-				
-		} //
-		
-		try {
-			Album testeAlbum = new Album("M", "Teste - DVD", 2016);
-			Assert.fail("Lancamento de Exception com nome de artista invalido");
-		}catch(Exception e) {
-			assertEquals("Artista do album nao pode ser nulo, informe um artista com no minimo 2 letras", e.getMessage());
-		} //
+
 		
 		// Test titulo nulo/vazio
 		
@@ -77,7 +64,7 @@ public class AlbumTest {
 			
 			
 		}catch(Exception e) {
-			assertEquals("Titulo do album nao deve ser nulo ou vazio, informe um titulo com no minimo 2 letras", e.getMessage());
+			assertEquals("Titulo do album nao deve ser nulo ou vazio", e.getMessage());
 			
 		} //
 		
@@ -85,7 +72,7 @@ public class AlbumTest {
 			Album testeAlbum = new Album("Mendonca", "", 2015);
 			Assert.fail("Lancamento de Exception com titulo do album vazio");
 		}catch(Exception e) {
-			assertEquals("Titulo do album nao deve ser nulo ou vazio, informe um titulo com no minimo 2 letras", e.getMessage());
+			assertEquals("Titulo do album nao deve ser nulo ou vazio", e.getMessage());
 			
 		} //
 		
@@ -94,7 +81,7 @@ public class AlbumTest {
 			Assert.fail("Lancamento de Exception com titulo do album vazio");
 			
 		}catch(Exception e) {
-			assertEquals("Titulo do album nao deve ser nulo ou vazio, informe um titulo com no minimo 2 letras", e.getMessage());
+			assertEquals("Titulo do album nao deve ser nulo ou vazio", e.getMessage());
 
 		} //
 		
@@ -131,7 +118,7 @@ public class AlbumTest {
 	@Test
 	public void testConstrutorWithExceptionRule() throws Exception{
 		exception.expect(Exception.class);
-		exception.expectMessage("Artista do album nao pode ser nulo, informe um artista com no minimo 2 letras");
+		exception.expectMessage("Artista do album nao pode ser nulo");
 		new Album(null, "Teste", 0);
 	}
 	
@@ -293,7 +280,7 @@ public class AlbumTest {
 					 "Titulo do album: Marilia Mendonca- Audio DVD" + FIM_DE_LINHA +
 					 "Ano de Lancamento: 2015" + FIM_DE_LINHA;
 		// Testando sem musicas adicionadas
-		String semMusica = toStringCore + FIM_DE_LINHA + "Album sem musicas adicionadas";
+		String semMusica = toStringCore + FIM_DE_LINHA + "Album Marilia Mendonca- Audio DVD sem musicas adicionadas";
 		assertEquals(semMusica, mariliaMendDVD.toString());
 		
 		// Testando com musicas adicionais

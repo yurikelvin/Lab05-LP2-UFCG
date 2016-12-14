@@ -1,10 +1,9 @@
-package sp2fy.playlists;
+package sp2fy;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 
 import exception.ValidacaoException;
-import sp2fy.musica.Musica;
 import validacao.Validacao;
 
 public class Playlist {
@@ -121,15 +120,13 @@ public class Playlist {
 
 	@Override
 	public String toString() {
-		String playlist = "Playlist: " + this.nomePlaylist + FIM_DE_LINHA;
+		String playlist = "Playlist: " + "\"" + this.nomePlaylist + "\"" + FIM_DE_LINHA;
 		if (musicasPlaylist.size() >= 1){
 			playlist += FIM_DE_LINHA;
 			for (int i = 0; i < musicasPlaylist.size(); i++) {
 				playlist += String.format("%d) %s" + FIM_DE_LINHA, i+1, musicasPlaylist.get(i).toString());
 			}
-		} else {
-			playlist += FIM_DE_LINHA + "Playlist sem musicas adicionadas";
-		}
+		} 
 		return playlist;
 	}
 
