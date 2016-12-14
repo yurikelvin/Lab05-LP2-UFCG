@@ -1,5 +1,11 @@
 package sp2fy;
 
+/** 
+ * Código desenvolvido para o lab05 de LP2-computacao@ufcg 2016.2
+ * Yuri Silva - 116110057
+ */
+
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
@@ -229,6 +235,16 @@ public class MusitecaTest {
 
 		assertFalse(minhaMusitecaTest.removePlaylist("dormir"));
 		
+	}
+	
+	@Test
+	public void testGetAlbum() throws Exception {
+		Album albumTest = new Album("Bruno Mars", "I know you", 1988);
+		minhaMusitecaTest.adicionaAlbum(albumTest);
+		assertEquals(minhaMusitecaTest.getAlbum("I know you"), albumTest);
+		Album novoAlbum = new Album("SOAD", "Melhores", 2000);
+		minhaMusitecaTest.adicionaAlbum(novoAlbum);
+		assertNotEquals(minhaMusitecaTest.getAlbum("Melhores"), albumTest);
 	}
 
 

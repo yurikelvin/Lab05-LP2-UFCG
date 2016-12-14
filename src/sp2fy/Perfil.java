@@ -1,5 +1,11 @@
 package sp2fy;
 
+/** 
+ * Código desenvolvido para o lab05 de LP2-computacao@ufcg 2016.2
+ * Yuri Silva - 116110057
+ */
+
+
 import exception.ValidacaoException;
 import validacao.Validacao;
 
@@ -80,7 +86,7 @@ public class Perfil {
 	}
 	
 	@Override
-	public String toString() {
+	public String toString() { // baseado no nome e na toString de musiteca
 		return "Usuario: " + this.getNomeUsuario() + System.lineSeparator() + minhaMusiteca + "Fim do perfil de " + this.getNomeUsuario();
 	}
 

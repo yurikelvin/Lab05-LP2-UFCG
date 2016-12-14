@@ -1,5 +1,11 @@
 package sp2fy;
 
+/** 
+ * Código desenvolvido para o lab05 de LP2-computacao@ufcg 2016.2
+ * Yuri Silva - 116110057
+ */
+
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
@@ -207,8 +213,6 @@ public class AlbumTest {
 		assertTrue(mariliaMendDVD.removeMusica(1));
 		assertFalse(mariliaMendDVD.contemMusica("Como faz com ela"));
 		
-		// Test
-		assertFalse(mariliaMendDVD.removeMusica(0));
 		
 	}
 	
@@ -235,17 +239,43 @@ public class AlbumTest {
 		mariliaMendDVD.adicionaMusica(oQueFalta);
 		mariliaMendDVD.adicionaMusica(aloPorteiro);
 		
-		// Test pegando musicas null/vazio/nao existe
+		// Test pegando musicas null
 		assertEquals(null, mariliaMendDVD.getMusica("nem sei"));
-		assertEquals(null, mariliaMendDVD.getMusica(null));
-		assertEquals(null, mariliaMendDVD.getMusica(""));
-		assertEquals(null, mariliaMendDVD.getMusica(" "));
+
 		
 		// Test pegando musicas validas
 		assertEquals(oQueFalta, mariliaMendDVD.getMusica("O que falta em voce sou eu"));
 		assertEquals(aloPorteiro, mariliaMendDVD.getMusica("Alo porteiro"));
 		
 	}
+	
+	@Test
+	public void testGetMusicaWithException() throws Exception {
+		exception.expect(Exception.class);
+		exception.expectMessage("Titulo da musica invalido");
+
+		mariliaMendDVD.getMusica(null);
+		
+
+	}
+	
+	@Test
+	public void testGetMusicaWithException1() throws Exception {
+		exception.expect(Exception.class);
+		exception.expectMessage("Titulo da musica invalido");
+
+		mariliaMendDVD.getMusica("");;
+	}
+	
+	@Test
+	public void testGetMusicaWithException2() throws Exception {
+		exception.expect(Exception.class);
+		exception.expectMessage("Titulo da musica invalido");
+
+		mariliaMendDVD.getMusica(" ");
+	}
+	
+
 	
 	@Test
 	public void testGetDuracaoTotal() throws Exception{

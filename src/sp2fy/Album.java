@@ -1,5 +1,10 @@
 package sp2fy;
 
+/** 
+ * Código desenvolvido para o lab05 de LP2-computacao@ufcg 2016.2
+ * Yuri Silva - 116110057
+ */
+
 import java.util.ArrayList;
 
 import exception.ValidacaoException;
@@ -58,9 +63,9 @@ public class Album implements Comparable<Album>{
 		
 	}
 	
-	public Musica getMusica(String titulo) throws ValidacaoException{
+	public Musica getMusica(String titulo) throws ValidacaoException{ // retorna null se nao achar, pode lancar excessao no parametro
 
-		minhaValidacao.validaMusica(titulo);
+		minhaValidacao.validaTitulo(titulo, "Titulo da musica invalido");
 
 		
 		for(int i = 0; i < musicas.size(); i++) {
@@ -74,7 +79,7 @@ public class Album implements Comparable<Album>{
 		
 	}
 	
-	public Musica getMusica(int faixa) throws ValidacaoException{
+	public Musica getMusica(int faixa) throws ValidacaoException{ // retorna null se nao achar, pode lancar excessao no parametro
 		if(faixa - 1 < 0) {
 			throw new ValidacaoException("Faixa invalida");
 		}
@@ -82,7 +87,7 @@ public class Album implements Comparable<Album>{
 		return musicas.get(faixa-1);
 	}
 	
-	public boolean adicionaMusica(Musica newMusic) throws ValidacaoException{ 
+	public boolean adicionaMusica(Musica newMusic) throws ValidacaoException{ // retorna true se bem sucedida ou excessao com base nos parametros
 		minhaValidacao.validaObjeto(newMusic, "Musica nao pode ser nula");
 		
 		musicas.add(newMusic);
@@ -91,7 +96,7 @@ public class Album implements Comparable<Album>{
 		
 	}
 	
-	public boolean removeMusica(int faixa) throws ValidacaoException {
+	public boolean removeMusica(int faixa) throws ValidacaoException { // retorna true se bem sucedida ou pode lancar excessao com base nos parametros
 		minhaValidacao.validaNumeroFaixa(faixa, "Faixa invalida");
 		
 		if(numeroDeFaixas() - faixa < 0) {
@@ -102,7 +107,7 @@ public class Album implements Comparable<Album>{
 		return true;
 	}
 	
-	public boolean contemMusica(String titulo) throws ValidacaoException{
+	public boolean contemMusica(String titulo) throws ValidacaoException{ // retorna true se bem sucedida ou pode lancar excessao com base nos parametros
 		minhaValidacao.validaTitulo(titulo, "Titulo da musica invalido");
 		for(int i = 0; i < musicas.size(); i++) {
 			if (musicas.get(i).getTitulo().equals(titulo)) {

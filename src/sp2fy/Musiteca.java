@@ -1,5 +1,11 @@
 package sp2fy;
 
+/** 
+ * Código desenvolvido para o lab05 de LP2-computacao@ufcg 2016.2
+ * Yuri Silva - 116110057
+ */
+
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -30,7 +36,7 @@ public class Musiteca {
 		this.minhaValidacao = new Validacao();
 	}
 	
-	public boolean adicionaAlbum(Album novoAlbum) throws ValidacaoException{
+	public boolean adicionaAlbum(Album novoAlbum) throws ValidacaoException{ // retorna true se bem sucedida ou pode lancar excessao com base nos parametros
 		minhaValidacao.validaObjeto(novoAlbum, "Album nao pode ser nulo");
 
 		meusAlbuns.add(novoAlbum);
@@ -38,7 +44,7 @@ public class Musiteca {
 		return true;
 	}
 	
-	public boolean adicionaAlbumFavorito(Album novoAlbum) throws ValidacaoException{
+	public boolean adicionaAlbumFavorito(Album novoAlbum) throws ValidacaoException{ // adiciona album favorito se o album ja existe na colecao
 		minhaValidacao.validaObjeto(novoAlbum, "Album nao pode ser nulo");
 
 		if( !(pesquisaAlbum(novoAlbum.getTitulo())) ) {
@@ -49,7 +55,7 @@ public class Musiteca {
 		return true;
 	}
 	
-	public boolean removeAlbum(String titulo) throws ValidacaoException {
+	public boolean removeAlbum(String titulo) throws ValidacaoException { // pode lancar excessao em titulo
 		minhaValidacao.validaTitulo(titulo, "Nome do album invalido");
 		if( pesquisaAlbum(titulo) ) {
 			Iterator<Album> it = meusAlbuns.iterator();
@@ -66,7 +72,7 @@ public class Musiteca {
 		return false;
 	}
 	
-	public boolean removeAlbumFavorito(String titulo) throws ValidacaoException {
+	public boolean removeAlbumFavorito(String titulo) throws ValidacaoException { // pode lancar excessao em titulo
 		minhaValidacao.validaTitulo(titulo, "Nome do album invalido");
 		if( pesquisaAlbumFavorito(titulo) ) {
 			Iterator<Album> it = meusAlbunsFavoritos.iterator();
@@ -111,12 +117,8 @@ public class Musiteca {
 		return false;
 	}
 	
-	public Album getAlbum(String nomeAlbum) throws ValidacaoException{
-		try {
-			minhaValidacao.validaTitulo(nomeAlbum, "Nome de album invalido");
-		} catch(Exception e) {
-			return null;
-		}
+	public Album getAlbum(String nomeAlbum) throws ValidacaoException{ // retorna null se mal sucedido, pode lancar excessao no parametro
+		minhaValidacao.validaTitulo(nomeAlbum, "Nome de album invalido");
 		Iterator<Album> it = meusAlbuns.iterator();
 		while(it.hasNext()) {
 			Album album = it.next();
@@ -128,7 +130,7 @@ public class Musiteca {
 		
 	}
 	
-	public boolean adicionaPlaylist(String nomePlaylist, String nomeAlbum, int faixa) throws Exception{
+	public boolean adicionaPlaylist(String nomePlaylist, String nomeAlbum, int faixa) throws Exception{ // adiciona faixa de um album em uma playlist, pode lancar excessao nos parametros
 		minhaValidacao.validaTitulo(nomePlaylist, "Nome playlist invalido");
 		minhaValidacao.validaTitulo(nomeAlbum, "Nome album invalido");
 		minhaValidacao.validaNumero(faixa, "Faixa invalida");
@@ -156,7 +158,7 @@ public class Musiteca {
 
 	}
 
-	public boolean removePlaylist(String nomePlaylist) throws ValidacaoException{
+	public boolean removePlaylist(String nomePlaylist) throws ValidacaoException{ // remove uma playlist inteira ja adicionada
 		minhaValidacao.validaTitulo(nomePlaylist, "Nome de playlist invalido");
 		
 		if(minhasPlaylists.remove(nomePlaylist) == null) {
@@ -181,7 +183,7 @@ public class Musiteca {
 	}
 	
 	@Override
-	public String toString() {
+	public String toString() { // baseado nos albuns adicionados com suas respectivas musicas, albuns favoritos com musicas, playlists
 		String musiteca = "--- Albuns ---" + FIM_DE_LINHA;
 		
 		if(meusAlbuns.size() == 0) {

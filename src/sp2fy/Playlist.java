@@ -1,5 +1,11 @@
 package sp2fy;
 
+/** 
+ * Código desenvolvido para o lab05 de LP2-computacao@ufcg 2016.2
+ * Yuri Silva - 116110057
+ */
+
+
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -80,7 +86,7 @@ public class Playlist {
 		return false;
 	}
 
-	public int duracaoTotal() {
+	public int duracaoTotal() { // calcula o tempo total que levaria pra ouvir todas as musicas da playlist
 		int duracao = 0;
 		
 		Iterator<Musica> it = musicasPlaylist.iterator();
@@ -119,7 +125,7 @@ public class Playlist {
 	}
 
 	@Override
-	public String toString() {
+	public String toString() { // baseado no nome da playlist e suas musicas
 		String playlist = "Playlist: " + "\"" + this.getNomePlaylist() + "\"" + FIM_DE_LINHA;
 		if (musicasPlaylist.size() >= 1){
 			playlist += FIM_DE_LINHA;

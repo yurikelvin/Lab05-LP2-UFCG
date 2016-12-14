@@ -1,5 +1,11 @@
 package validacao;
 
+/** 
+ * Código desenvolvido para o lab05 de LP2-computacao@ufcg 2016.2
+ * Yuri Silva - 116110057
+ */
+
+
 import exception.ValidacaoException;
 import sp2fy.Album;
 import sp2fy.Musica;
